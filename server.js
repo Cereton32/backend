@@ -4,6 +4,8 @@ require('dotenv').config();
 const express = require('express');
 // Add this at the top with other requires
 const operatorRoutes = require('./routes/operatorRoutes');
+// Add with other route imports
+const authRoutes = require('./routes/authRoute');
 
 const cors = require('cors');
 const multer = require('multer');
@@ -17,6 +19,8 @@ app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/operators', operatorRoutes);
+// Add with other app.use() routes
+app.use('/api', authRoutes);
 
 // Configure Multer for file uploads
 const storage = multer.diskStorage({
